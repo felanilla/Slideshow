@@ -1,0 +1,127 @@
+.slides-container {
+    height: 100vh;
+    width: 100%;
+
+    &__slide {
+        height: 100vh;
+        width: 100%;
+        background-color: #333;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 125%;
+        position: relative;
+        overflow: hidden;
+
+        &:nth-child(1) {
+            background-image: url('../img/slide-1-bg.png')
+        }
+
+        &:nth-child(2) {
+            background-image: url('../img/slide-2-bg.png')
+        }
+
+        &:nth-child(3) {
+            background-image: url('../img/slide-3-bg.png')
+        }
+
+        .hotspot {
+            position: absolute;
+            display: block;
+            width: 120px;
+            height: 120px;
+            border-radius: 100%;
+            background-size: 60%;
+            background-color: rgba(255, 255, 255, 0.75);
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 10px;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 100px;
+                height: 100px;
+                border-radius: 100%;
+                background-color: transparent;
+                border: 2px solid #000;
+            }
+        }
+
+        .hotspot.sun {
+            top: 72%;
+            left: 25%;
+            background-image: url('../img/sun.png');
+        }
+
+        .hotspot.waves {
+            top: 40%;
+            left: 60%;
+            background-image: url('../img/waves.png');
+        }
+
+        .hotspot.mountains {
+            top: 72%;
+            right: 8%;
+            background-image: url('../img/mountains.png');
+            background-position-y: 40%;
+        }
+
+        .hotspot.hammer {
+            top: 45%;
+            left: 20%;
+            background-image: url('../img/hammer.svg');
+        }
+
+        .hotspot.fire {
+            bottom: 10%;
+            left: 50%;
+            background-image: url('../img/fire.png');
+        }
+
+        .hotspot.lizard {
+            top: 66%;
+            right: 15%;
+            background-image: url('../img/lizard.svg');
+            background-position-y: 70%;
+            background-size: 70%;
+        }
+
+        .hotspot.tower {
+            top: 22%;
+            left: 20%;
+            background-image: url('../img/tower.svg');
+        }
+
+        .hotspot.leaves {
+            top: 8%;
+            left: 55%;
+            background-image: url('../img/leaves.svg');
+        }
+
+        .hotspot.fish {
+            top: 18%;
+            right: 10%;
+            background-image: url('../img/fish.svg');
+        }
+    }
+}
+
+.bg-container {
+    width: 100vw;
+    height: calc( 100vh + 200px );
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.bg-image {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100vw;
+    height: calc( 100vh + 200px );
+}
+  
+
+

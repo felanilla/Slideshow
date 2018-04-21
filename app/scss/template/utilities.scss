@@ -1,0 +1,30 @@
+//## Utilities
+@import "../_variables";
+@import "../_mixins";
+
+//** Fonts and typo
+.u-text-uppercase { text-transform: uppercase; }
+.u-text-justify { text-align: justify; }
+.u-text-center { text-align: center; }
+
+//** Layering
+.u-top-layer { z-index: 10; }
+.u-back-layer { z-index: 0; }
+
+
+//** Responsive classes
+.u-visible-sm {
+    display: block;
+
+    @include breakpoint(sm) {
+        display: none;
+    }
+}
+
+.u-hidden-sm {
+    display: none;
+
+    @include breakpoint(sm) {
+        display: block;
+    }
+}

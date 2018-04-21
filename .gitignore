@@ -1,0 +1,10 @@
+node_modules/*
+/.tmp/*
+/video/
+/mov/
+/w3cErrors/
+/w3cErrors/*
+*.mp3
+*.mp4
+npm-debug.log
+~/.atom

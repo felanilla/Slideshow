@@ -1,0 +1,21 @@
+//## Typography
+@import "_variables";
+@import "_mixins";
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
+h1 { 
+  font-size: $font-size-base; 
+  
+  @include breakpoint(sm) {
+    font-size: ($font-size-base / 2);
+  }
+}
+
+a {
+  font-size: $font-size-nav;
+  
+  @include breakpoint(sm) {
+    font-size: ($font-size-nav / 2);
+  }
+}
