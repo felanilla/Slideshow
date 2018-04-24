@@ -20,19 +20,19 @@ var ANIMATION = {
 
             if( outSectionAbove.length ){
             TweenMax.to( outSectionAbove.find('.bg-container'), .25 , { y: 100, rotation: .1 } );
-            TweenMax.to( outSectionAbove.find('h1') , .5, { y: -100, autoAlpha: 0 } );
+            TweenMax.to( outSectionAbove.find('h1') , .8, { y: -100, autoAlpha: 0 } );
             TweenMax.to( outSectionAbove.find('.hotspot') , .25, { y: -150, autoAlpha: 0 } );
             }
             
             if( outSectionBelow.length ){
             TweenMax.to( outSectionBelow.find('.bg-container'), .25 , { y: -100, rotation:.1 } );
-            TweenMax.to( outSectionBelow.find('h1') , .5, { y: 100, autoAlpha: 0 }  );
+            TweenMax.to( outSectionBelow.find('h1') , .8, { y: 100, autoAlpha: 0 }  );
             TweenMax.to( outSectionBelow.find('.hotspot') , .25, { y: 150, autoAlpha: 0 } );
             }
             
             TweenMax.to('.slides-container', 1 , { y: -$('.slides-container').height()*(index-1), rotation: 0, ease: Power2.easeOut } );
             TweenMax.to( intoSection.find('.bg-container'), 1 , { y: 0, rotation: 0 } );
-            TweenMax.to( intoSection.find('h1') , .5, { y: 0, autoAlpha: 1, ease: Expo.ease } );
+            TweenMax.to( intoSection.find('h1') , .8, { y: 0, autoAlpha: 1, ease: Expo.ease } );
             TweenMax.staggerTo( intoSection.find('.hotspot') , .75, { y: 0, autoAlpha: 1, delay: .5 }, .125, function(){ isScrolling = false; } );
         }
 
@@ -57,6 +57,18 @@ var ANIMATION = {
                 }
             }   
         });
+    
+        $(document).on( 'keydown' , function(e){
+            if (( e.keyCode == '39' || e.keyCode == '40' ) && curSlide < $('section').length ){ 
+                moveToSlide( curSlide+1 );
+                curSlide++;
+                changeNavContent();
+            } else if( ( e.keyCode == '37' || e.keyCode == '38' ) && curSlide > 1 ){
+                moveToSlide( curSlide-1 );
+                curSlide--;
+                changeNavContent();
+            }     
+        });
 
         $('.nav-bottom__arrow-up').on( 'click' , function(e){
             if( curSlide > 1 ){ 
@@ -73,24 +85,12 @@ var ANIMATION = {
                 changeNavContent();
             }
         });
-    
-        $(document).on( 'keydown' , function(e){
-            if (( e.keyCode == '39' || e.keyCode == '40' ) && curSlide < $('section').length ){ 
-                moveToSlide( curSlide+1 );
-                curSlide++;
-                changeNavContent();
-            } else if( ( e.keyCode == '37' || e.keyCode == '38' ) && curSlide > 1 ){
-                moveToSlide( curSlide-1 );
-                curSlide--;
-                changeNavContent();
-            }     
-        });
 
         function changeNavContent() {
 
             let slideCounter = document.getElementById('current-slide'),
                 icon = document.getElementsByClassName('nav-top__icon')[0],
-                number = document.getElementById('line');
+                line = document.getElementById('line');
 
             slideCounter.innerHTML = '0' + curSlide;
 
@@ -102,15 +102,39 @@ var ANIMATION = {
                 icon.style.backgroundImage = 'url(../img/icon-slide-3.png)';
             }
 
-            let tl = new TimelineMax();
-            tl
-            .fromTo(slideCounter, .5, { x: -10, autoAlpha: 0}, { x: 0, autoAlpha: 1 }, 0)
-            .fromTo(line, .4, { width: 0 }, { width: 30 }, 0)
+            let navTl = new TimelineMax();
+            navTl
+            .fromTo(slideCounter, .5, { x: -15, autoAlpha: 0}, { x: 0, autoAlpha: 1 }, 0)
+            .from(line, .5 , {width: 0 }, 0)
+            .from(line, .2 ,{  left: 35 }, .2)
+        }
+    },
+
+    showAndHidePopup: function() {
+
+        $(".hotspot").hover(over, out);
+        TweenMax.set(".popup", { autoAlpha: 0 } );
+
+        function over(){
+            var overTl = new TimelineMax();
+            overTl
+            .to($(this).find(".icon .group"), 0.3, { fill: "#fff", ease: Power3.easeIn } )
+            .to($(this).find(".popup"), 0.3, { autoAlpha: 1, ease: Power4.easeIn } )
+            .fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
+        }
+            
+        function out(){
+            var outTl = new TimelineMax();
+            outTl
+            .to($(this).find(".copy"), 0.3, { y: 20, autoAlpha: 0 } )
+            .to($(this).find(".icon .group"), 0.3, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
+            .to($(this).find(".popup"), 0.3, { autoAlpha: 0, ease: Power4.easeIn } )
         }
     },
 
     init: function() {
         ANIMATION.changeSlideAnimation();
+        ANIMATION.showAndHidePopup();
     },
 };
 

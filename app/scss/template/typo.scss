@@ -21,3 +21,10 @@ p {
     font-size: ($font-size-nav / 2);
   }
 }
+
+p.copy {
+  font-size: $font-size-copy;
+  font-family: sans-serif;
+  font-weight: 400;
+
+}
