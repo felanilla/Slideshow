@@ -5,15 +5,17 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
 h1 { 
-  font-size: $font-size-base; 
+  font-size: $font-size-header; 
+  font-family: $font;
   
   @include breakpoint(sm) {
-    font-size: ($font-size-base / 2);
+    font-size: ($font-size-header / 2);
   }
 }
 
-a {
+p {
   font-size: $font-size-nav;
+  font-family: $font;
   
   @include breakpoint(sm) {
     font-size: ($font-size-nav / 2);

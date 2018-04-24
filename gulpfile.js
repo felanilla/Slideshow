@@ -27,7 +27,6 @@ const paths = {
         video:    'dist/video',
         json:     'dist/json',
         scripts:  'dist/scripts',
-        favicons: 'dist/favicons',
         fonts:    'dist/fonts'
     },
 
@@ -36,7 +35,6 @@ const paths = {
     html:    'app/*.html',
     parts:   'app/**/*.html',
     images:  'app/img/**/*.{png,jpg,gif,svg}',
-    favicon: 'app/img/favicon.png',
     videos:  'app/video/*.{mp4,webm}',
     json:    'app/json/*.json',
     scss:    'app/scss/style.scss',

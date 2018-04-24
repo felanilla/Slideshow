@@ -12,42 +12,69 @@
     <meta name="keywords" content="Project title" />
     <meta property="og:title" content="Project title" />
     <meta property="og:description" content="Project title" />
-
     <link href="css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
     <nav class="nav u-top-layer">
-        <div class="nav-top"></div>
+        <div class="nav-top">
+    <div class="nav-top__icon" alt="Nav icon">
+        <span class="nav-top__icon--dot"></span>
+    </div>
+</div>
 <div class="nav-bottom">
-    <img class="nav-bottom__arrow nav-bottom__arrow-up" src="../img/arrow.svg">
-    <img class="nav-bottom__arrow nav-bottom__arrow-down" src="../img/arrow.svg">
+    <img class="nav-bottom__arrow nav-bottom__arrow-up" src="../img/arrow-up.png" alt="Arrow up">
+    <img class="nav-bottom__arrow nav-bottom__arrow-down" src="../img/arrow-down.png" alt="Arrow down">
+    <div class="nav-bottom__index">
+        <p id="current-slide">
+            01
+        </p>
+        <div id="line" class="nav-bottom__index__line"></div>
+        <p>
+            03
+        </p>
+    </div>
 </div>
     </nav>
     <main class="main u-back-layer">
         <div class="slides-container">
-    <section class="slides-container__slide">
+    <section id="slide-1" class="slides-container__slide">
+        <div class="slides-container__slide__header">
+            <h1>
+                North<br>Umpqua Trail,<br>Oregon
+            </h1>
+        </div>
         <div class="hotspot sun"></div>
         <div class="hotspot waves"></div>
         <div class="hotspot mountains"></div>
     </section>
-    <section class="slides-container__slide">
-            <div class="hotspot hammer"></div>
-            <div class="hotspot fire"></div>
-            <div class="hotspot lizard"></div>
+    <section id="slide-2" class="slides-container__slide">
+        <div class="slides-container__slide__header">
+            <h1>
+                The Joshua Tree
+            </h1>
+        </div>
+        <div class="hotspot hammer"></div>
+        <div class="hotspot fire"></div>
+        <div class="hotspot lizard"></div>
     </section>
-    <section class="slides-container__slide">
-            <div class="hotspot tower"></div>
-            <div class="hotspot leaves"></div>
-            <div class="hotspot fish"></div>
+    <section id="slide-3" class="slides-container__slide">
+        <div class="slides-container__slide__header">
+            <h1>
+                The Florida Keys
+            </h1>
+        </div>
+        <div class="hotspot tower"></div>
+        <div class="hotspot leaves"></div>
+        <div class="hotspot fish"></div>
     </section>
 </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/jquery.gsap.min.js"></script>
     <script src="scripts/main.js"></script>
 </body>

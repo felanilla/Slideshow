@@ -1,6 +1,6 @@
 nav {
     position: fixed;
-    width: 185px;
+    width: 160px;
     height: 100vh;
     background-color: rgba(23,23,23,0.4);
     border-right: 1px solid #fff;
@@ -14,7 +14,34 @@ nav {
         @include flexbox;
         @include flex-direction(column);
         @include align-items(center);
+        overflow: visible;
 
+        &__icon {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            border: 2px solid #fff;
+            border-radius: 100%;
+            background-image: url('../img/icon-slide-1.png');
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: 70%;
+            margin: 8px 0;
+            -webkit-transition: $animate;
+            -moz-transition: $animate;
+            -o-transition: $animate;
+            transition: $animate;
+
+            &--dot {
+                width: 14px;
+                height: 14px;
+                border-radius: 100%;
+                background-color: $default;
+                position: absolute;
+                top: 45%;
+                right: -41%;
+            }
+        }
     }
 
     .nav-bottom {
@@ -24,22 +51,45 @@ nav {
 
         &__arrow {
             cursor: pointer;
-            width: 40px;
-            height: 60px;
-            padding: 10px 5px;
+            padding: 10px;
         }
 
         &__arrow-up {
-            margin-bottom: 15px;
-            -ms-transform: rotate(-90deg);
-            -webkit-transform: rotate(-90deg);
-            transform: rotate(-90deg);
+            &:hover {
+                animation: arrow-up 0.8s ease-in;
+            }
         }
 
         &__arrow-down {
-            -ms-transform: rotate(90deg);
-            -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+            margin-bottom: 20px;
+            &:hover {
+                animation: arrow-down 0.8s ease-in;
+            }
         }
+
+        &__index {
+
+            p {
+                text-align: center;
+            }
+
+            &__line {
+                height: 2px;
+                background-color: $default;
+                margin: 8px 0 4px;
+            }
+        }
+    }
+}
+
+@keyframes arrow-up {
+    50% {
+      transform: translate(0, -6px);
+    }
+}
+
+@keyframes arrow-down {
+    50% {
+      transform: translate(0, 6px);
     }
 }
