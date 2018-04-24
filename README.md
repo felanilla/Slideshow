@@ -1,1 +1,9 @@
-# Slideshow-Task
+# README #
+Slideshow
+
+# Setup
+npm i
+
+# Build
+gulp build
+
