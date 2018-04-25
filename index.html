@@ -17,15 +17,24 @@
 </head>
 
 <body>
-    <nav class="nav u-top-layer">
+    <div id="app">
+        <div class="loader-container">
+    <div class="loader-container__loader">
+        <div class="load"></div>
+        <div class="load"></div>
+        <div class="load"></div>
+        <div class="load"></div>		
+    </div>
+</div>
+        <nav class="nav u-top-layer">
         <div class="nav-top">
     <div class="nav-top__icon" alt="Nav icon">
         <span class="nav-top__icon--dot"></span>
     </div>
 </div>
 <div class="nav-bottom">
-    <img class="nav-bottom__arrow nav-bottom__arrow-up" src="./dist/img/arrow-up.png" alt="Arrow up">
-    <img class="nav-bottom__arrow nav-bottom__arrow-down" src="./dist/img/arrow-down.png" alt="Arrow down">
+    <img class="nav-bottom__arrow nav-bottom__arrow-up" src="../img/arrow-up.png" alt="Arrow up">
+    <img class="nav-bottom__arrow nav-bottom__arrow-down" src="../img/arrow-down.png" alt="Arrow down">
     <div class="nav-bottom__index">
         <p id="current-slide">
             01
@@ -36,8 +45,8 @@
         </p>
     </div>
 </div>
-    </nav>
-    <main class="main u-back-layer">
+        </nav>
+        <main class="main u-back-layer">
         <div class="slides-container">
     <section id="slide-1" class="slides-container__slide">
         <div class="slides-container__slide__header">
@@ -252,7 +261,8 @@ fill="#000000" stroke="none">
         </div>
     </section>
 </div>
-    </main>
+        </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>

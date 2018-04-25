@@ -3,6 +3,44 @@ var utilities = require('./utilities');
 
 var ANIMATION = {
 
+    loadPage: function() {
+
+        var main = $('main')
+        var nav = $('nav')
+        var load = $('.load')
+        var loaderTime = new TimelineMax({repeat: 2, onComplete: loadScreen})
+        var timeline = new TimelineMax()
+
+        loaderTime
+            .staggerFrom(load, .3, {
+                scaleY: 0,
+                transformOrigin: '0% 0%',
+                ease: Back.easeOut
+            }, .1)
+
+            .staggerFrom(load, .5, {
+                scaleY: 1,
+                transformOrigin: '0% 100%',
+                ease: Back.easeIn
+            }, .1)
+
+        function loadScreen() {
+
+            timeline
+            .to($('.loader-container'), .5, {
+                autoAlpha: 0
+            })
+            .from(main, .5, {
+                autoAlpha: 0
+            } )
+            .from(nav, .5, {
+                x: -100,
+                autoAlpha: 0,
+                ease: Expo.ease
+            } )
+        }
+    },
+
    changeSlideAnimation: function() {
 
         $('section').each( function(){
@@ -133,6 +171,7 @@ var ANIMATION = {
     },
 
     init: function() {
+        ANIMATION.loadPage();
         ANIMATION.changeSlideAnimation();
         ANIMATION.showAndHidePopup();
     },

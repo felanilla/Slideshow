@@ -17,12 +17,15 @@
 </head>
 
 <body>
-    <nav class="nav u-top-layer">
+    <div id="app">
+        @@include('./html/loader.html')
+        <nav class="nav u-top-layer">
         @@include('./html/nav.html')
-    </nav>
-    <main class="main u-back-layer">
+        </nav>
+        <main class="main u-back-layer">
         @@include('./html/slides.html')
-    </main>
+        </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
