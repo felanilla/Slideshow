@@ -50,7 +50,7 @@ var ANIMATION = {
    changeSlideAnimation: function() {
 
         $('section').each( function(){
-            $(this).prepend('<div class="bg-container"><div class="bg" style=\'background-image: '+ $(this).css('background-image') +';\'></div></div>');
+            $(this).prepend('<div class="bg-container"><div class="bg-image" style=\'background-image: '+ $(this).css('background-image') +';\'></div></div>');
         })
         
         TweenMax.set( 'section .bg-container' , { y: -200, rotate:.1 } );
