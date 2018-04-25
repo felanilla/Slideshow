@@ -8,6 +8,7 @@ var ANIMATION = {
         var main = $('main')
         var nav = $('nav')
         var load = $('.load')
+        var icon = $('.nav-top__icon');
         var loaderTime = new TimelineMax({repeat: 2, onComplete: loadScreen})
         var timeline = new TimelineMax()
 
@@ -33,8 +34,13 @@ var ANIMATION = {
             .from(main, .5, {
                 autoAlpha: 0
             } )
-            .from(nav, .5, {
-                x: -100,
+            .from(nav, .4, {
+                y: -50,
+                autoAlpha: 0,
+                ease: Expo.ease
+            } )
+            .from(icon, .1, {
+                x: -10,
                 autoAlpha: 0,
                 ease: Expo.ease
             } )
