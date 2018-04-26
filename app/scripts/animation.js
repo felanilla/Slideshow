@@ -29,7 +29,7 @@ var ANIMATION = {
         function loadScreen() {
 
             timeline
-            .to($('.loader-container'), .5, {
+            .to($(document.getElementsByClassName("loader-container")), .5, {
                 autoAlpha: 0
             })
             .from(main, .5, {
@@ -102,8 +102,8 @@ var ANIMATION = {
                 }
             }   
         });
-    
-        $(document).on( 'keydown' , function(e){
+
+        document.addEventListener('keydown', function(e) {
             if (( e.keyCode == '39' || e.keyCode == '40' ) && curSlide < $('section').length ){ 
                 moveToSlide( curSlide+1 );
                 curSlide++;
@@ -113,9 +113,13 @@ var ANIMATION = {
                 curSlide--;
                 changeNavContent();
             }     
-        });
+        }); 
 
-        $('.nav-bottom__arrow-up').on( 'click' , function(e){
+        let arrowUp = document.getElementsByClassName('nav-bottom__arrow-up')[0],
+            arrowDown = document.getElementsByClassName('nav-bottom__arrow-down')[0];
+
+
+        arrowUp.addEventListener('click', function(e) {
             if( curSlide > 1 ){ 
                 moveToSlide( curSlide-1 );
                 curSlide--;
@@ -123,7 +127,7 @@ var ANIMATION = {
             }
         });
 
-        $('.nav-bottom__arrow-down').on( 'click' , function(e){
+        arrowDown.addEventListener('click', function(e) {
             if( curSlide < $('section').length ){ 
                 moveToSlide( curSlide+1 );
                 curSlide++;
@@ -158,11 +162,6 @@ var ANIMATION = {
     showAndHidePopup: function() {
 
         let hotspot = document.getElementsByClassName('hotspot');
-
-        // hotspot.addEventListener("mouseenter", function(e) {
-        //     over();
-        //     out();
-        // });
 
         $(".hotspot").hover(over, out);
         TweenMax.set(".popup", { autoAlpha: 0 } );
