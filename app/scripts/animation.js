@@ -5,12 +5,13 @@ var ANIMATION = {
 
     loadPage: function() {
 
-        var main = $('main')
-        var nav = $('nav')
-        var load = $('.load')
-        var icon = $('.nav-top__icon');
-        var loaderTime = new TimelineMax({repeat: 2, onComplete: loadScreen})
-        var timeline = new TimelineMax()
+        let main = document.getElementsByTagName('main'),
+            nav = document.getElementsByTagName('nav'),
+            load = document.getElementsByClassName("load"),
+            icon = document.getElementsByClassName("nav-top__icon");
+    
+        let loaderTime = new TimelineMax({repeat: 2, onComplete: loadScreen})
+        let timeline = new TimelineMax()
 
         loaderTime
             .staggerFrom(load, .3, {
@@ -58,7 +59,7 @@ var ANIMATION = {
         TweenMax.set( '.hotspot' , { y: 150, autoAlpha: 0 } );
         
         function moveToSlide( index ){
-            var intoSection = $('section:nth-child('+index+')');
+            let intoSection = $('section:nth-child('+index+')');
             var outSectionAbove = $( 'section:nth-child('+(index-1)+')' );
             var outSectionBelow = $( 'section:nth-child('+(index+1)+')' );    
 
@@ -155,6 +156,13 @@ var ANIMATION = {
     },
 
     showAndHidePopup: function() {
+
+        let hotspot = document.getElementsByClassName('hotspot');
+
+        // hotspot.addEventListener("mouseenter", function(e) {
+        //     over();
+        //     out();
+        // });
 
         $(".hotspot").hover(over, out);
         TweenMax.set(".popup", { autoAlpha: 0 } );
