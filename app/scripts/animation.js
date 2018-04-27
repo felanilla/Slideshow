@@ -35,15 +35,14 @@ var ANIMATION = {
             .from(main, .5, {
                 autoAlpha: 0
             } )
-            .from(nav, .4, {
-                y: -50,
-                autoAlpha: 0,
-                ease: Expo.ease
+            .from(nav, 1, {
+                x: -200,
+                ease:Quad.easeInOut
             } )
-            .from(icon, .1, {
-                x: -10,
+            .from(icon, .2, {
+                y: -20,
                 autoAlpha: 0,
-                ease: Expo.ease
+                ease:Quad.easeInOut
             } )
         }
     },
@@ -169,6 +168,7 @@ var ANIMATION = {
         function over(){
             var overTl = new TimelineMax();
             overTl
+            .to($(this), 0.5, { y: 30 } )
             .to($(this).find(".icon .group"), 0.3, { fill: "#fff", ease: Power3.easeIn } )
             .to($(this).find(".popup"), 0.3, { autoAlpha: 1, ease: Power4.easeIn } )
             .fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
@@ -180,6 +180,7 @@ var ANIMATION = {
             .to($(this).find(".copy"), 0.3, { y: 20, autoAlpha: 0 } )
             .to($(this).find(".icon .group"), 0.3, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
             .to($(this).find(".popup"), 0.3, { autoAlpha: 0, ease: Power4.easeIn } )
+            .to($(this), 0.5, { y: -30 } )
         }
     },
 
