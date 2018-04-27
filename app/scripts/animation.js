@@ -168,8 +168,8 @@ var ANIMATION = {
         function over(){
             var overTl = new TimelineMax();
             overTl
-            .to($(this), 0.5, { y: 30 } )
-            .to($(this).find(".icon .group"), 0.3, { fill: "#fff", ease: Power3.easeIn } )
+            .to($(this), 0.5, { y: 20 } )
+            .to($(this).find(".icon .group"), 0.1, { fill: "#fff", ease: Power3.easeIn } )
             .to($(this).find(".popup"), 0.3, { autoAlpha: 1, ease: Power4.easeIn } )
             .fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
         }
@@ -178,9 +178,9 @@ var ANIMATION = {
             var outTl = new TimelineMax();
             outTl
             .to($(this).find(".copy"), 0.3, { y: 20, autoAlpha: 0 } )
-            .to($(this).find(".icon .group"), 0.3, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
+            .to($(this).find(".icon .group"), 0.1, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
             .to($(this).find(".popup"), 0.3, { autoAlpha: 0, ease: Power4.easeIn } )
-            .to($(this), 0.5, { y: -30 } )
+            .to($(this), 0.5, { y: -20 } )
         }
     },
 
