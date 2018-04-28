@@ -53,9 +53,18 @@ var ANIMATION = {
             $(this).prepend('<div class="bg-container"><div class="bg-image" style=\'background-image: '+ $(this).css('background-image') +';\'></div></div>');
         })
         
-        TweenMax.set( 'section .bg-container' , { y: -200, rotate:.1 } );
-        TweenMax.set( 'h1' , { y: 100, autoAlpha: 1 } );
-        TweenMax.set( '.hotspot' , { y: 150, autoAlpha: 0 } );
+        TweenMax.set( 'section .bg-container' , { 
+            y: -200, 
+            rotate:.1 
+        });
+        TweenMax.set( 'h1' , { 
+            y: 100,
+            autoAlpha: 1 
+        });
+        TweenMax.set( '.hotspot' , {
+            y: 150,
+            autoAlpha: 0 
+        });
         
         function moveToSlide( index ){
             let intoSection = $('section:nth-child('+index+')');
@@ -167,7 +176,7 @@ var ANIMATION = {
         function on(e){
             var onTl = new TimelineMax();
             onTl.to($(this), 0.5, { backgroundColor:"#fff" }, 0 )
-            onTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.2, scaleY: 1.2 }, 0 )
+            onTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.1, scaleY: 1.1 }, 0 )
         }
 
         function out(e){
@@ -185,18 +194,18 @@ var ANIMATION = {
             var showTl = new TimelineMax();
 
             if( $(this).hasClass("hotspot--up") ){
-                showTl.to( $(this) , 0.4 , { y: -40, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4 , { y: -40, ease: Power1.easeIn } )
             }
             if( $(this).hasClass("hotspot--down") ){
-                showTl.to( $(this) , 0.4, { y: 40, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4, { y: 40, ease: Power1.easeIn } )
             }
             if( $(this).hasClass("hotspot--left") ){
-                showTl.to( $(this) , 0.4 , { x: -40, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4 , { x: -40, ease: Power1.easeIn } )
             }
             if( $(this).hasClass("hotspot--right") ){
-                showTl.to( $(this) , 0.4, { x: 40, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4, { x: 40, ease: Power1.easeIn } )
             }
-            showTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.2, scaleY: 1.2, autoAlpha: 0 }, 0 )
+            showTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.1, scaleY: 1.1, autoAlpha: 0 }, 0 )
             showTl.to($(this).find(".icon .group"), 0.2, { fill: "#fff", ease: Power3.easeIn } )
             showTl.to($(this).find(".popup"), 0.2, { autoAlpha: 1, ease: Power4.easeIn } )
             showTl.fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
@@ -215,16 +224,16 @@ var ANIMATION = {
             .to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1, autoAlpha: 1 } )
 
             if( $(".active").hasClass("hotspot--up") ) {
-                hideTl.to( $(".active") , 0.4 , { y: 20, ease: Power2.easeIn } )
+                hideTl.to( $(".active") , 0.4 , { y: 20, ease: Power1.easeIn } )
             }
             if( $(".active").hasClass("hotspot--down") ){
-                hideTl.to( $(".active") , 0.4, { y: -20, ease: Power2.easeIn } )
+                hideTl.to( $(".active") , 0.4, { y: -20, ease: Power1.easeIn } )
             }
             if( $(".active").hasClass("hotspot--left") ){
-                hideTl.to( $(".active") , 0.4 , { x: 20, ease: Power2.easeIn } )
+                hideTl.to( $(".active") , 0.4 , { x: 20, ease: Power1.easeIn } )
             }
             if( $(".active").hasClass("hotspot--right") ){
-                hideTl.to( $(".active") , 0.4, { x: -20, ease: Power2.easeIn } )
+                hideTl.to( $(".active") , 0.4, { x: -20, ease: Power1.easeIn } )
             }
             $(".hotspot").removeClass("active")
         }

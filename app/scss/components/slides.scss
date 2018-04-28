@@ -91,10 +91,12 @@
                 top: 0;
                 left: 0;
                 background-color: hsla(0,0%,9%,.8);
-                padding: 20px;
+                padding: 20px 20px 20px 130px;
                 z-index: 2;
                 border-radius: 10px;
                 min-height: 130px;
+                @include flexbox;
+                @include align-items(center);
 
             }
         }
@@ -112,9 +114,8 @@
 
             .popup {
                 width: 465px;
-                top: -22px;
-                left: 10px;
-                padding-left: 125px;
+                top: -15px;
+                left: 5px;
             }
         }
 
@@ -128,9 +129,8 @@
 
             .popup {
                 width: 420px;
-                padding-left: 130px;
-                top: -20px;
-                left: 0px;
+                top: -5px;
+                left: 5px;
                 min-height: 130px;
             }
         }
@@ -149,6 +149,7 @@
                 left: -355px;
                 width: 480px;
                 padding-right: 130px;
+                padding-left: 20px;
             }
         }
 
@@ -199,21 +200,19 @@
 
             .popup {
                 width: 480px;
-                top: 14px;
-                left: 14px;
-                padding-left: 130px;
+                top: 15px;
+                left: 15px;
             }
         }
 
         .hotspot.tower {
-            top: 32%;
+            top: 30%;
             left: 20%;
 
             .popup {
                 width: 480px;
-                top: 14px;
-                left: 14px;
-                padding-left: 130px;
+                top: 15px;
+                left: 15px;
             }
         }
 
@@ -223,9 +222,8 @@
 
             .popup {
                 width: 420px;
-                padding-left: 130px;
-                top: 7px;
-                left: 7px;
+                top: 5px;
+                left: 5px;
             }
         }
 
@@ -234,10 +232,11 @@
             right: 10%;
 
             .popup {
-                top: px;
+                top: -5px;
                 left: -365px;
                 width: 480px;
                 padding-right: 110px;
+                padding-left: 20px;
             }
         }
     }
