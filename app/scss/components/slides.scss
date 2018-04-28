@@ -65,8 +65,7 @@
             padding: 10px;
             z-index: 10;
 
-            &::after {
-                content: '';
+            &__hotspot-inner {
                 display: block;
                 width: 100px;
                 height: 100px;
@@ -95,6 +94,7 @@
                 padding: 20px;
                 z-index: 2;
                 border-radius: 10px;
+                min-height: 130px;
 
             }
         }
@@ -111,10 +111,10 @@
             }
 
             .popup {
-                width: 480px;
-                top: 14px;
-                left: 14px;
-                padding-left: 105px;
+                width: 465px;
+                top: -22px;
+                left: 10px;
+                padding-left: 125px;
             }
         }
 
@@ -129,8 +129,9 @@
             .popup {
                 width: 420px;
                 padding-left: 130px;
-                top: -15px;
-                left: 5px;
+                top: -20px;
+                left: 0px;
+                min-height: 130px;
             }
         }
 
@@ -145,9 +146,9 @@
 
             .popup {
                 top: 7px;
-                left: -365px;
+                left: -355px;
                 width: 480px;
-                padding-right: 110px;
+                padding-right: 130px;
             }
         }
 
@@ -162,8 +163,8 @@
 
             .popup {
                 width: 410px;
-                padding-left: 120px;
-                top: -5px;
+                padding-left: 130px;
+                top: -10px;
                 left: 5px;
             }
         }
@@ -183,7 +184,7 @@
                 top: 7px;
                 left: 5px;
                 width: 480px;
-                padding-left: 110px;
+                padding-left: 130px;
             }
         }
 
@@ -200,7 +201,7 @@
                 width: 480px;
                 top: 14px;
                 left: 14px;
-                padding-left: 105px;
+                padding-left: 130px;
             }
         }
 
@@ -212,7 +213,7 @@
                 width: 480px;
                 top: 14px;
                 left: 14px;
-                padding-left: 105px;
+                padding-left: 130px;
             }
         }
 

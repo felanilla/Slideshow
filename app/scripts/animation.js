@@ -160,51 +160,73 @@ var ANIMATION = {
 
     showAndHidePopup: function() {
 
-        let hotspot = document.getElementsByClassName('hotspot');
-
-        $(".hotspot").hover(over, out);
+        $(".hotspot").hover(on, out);
+        $(".hotspot").click(showPopup);
         TweenMax.set(".popup", { autoAlpha: 0 } );
 
-        function over(){
-            event.preventDefault();
-            var overTl = new TimelineMax();
+        function on(e){
+            var onTl = new TimelineMax();
+            onTl.to($(this), 0.5, { backgroundColor:"#fff" }, 0 )
+            onTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.2, scaleY: 1.2 }, 0 )
+        }
+
+        function out(e){
+            var outTl = new TimelineMax();
+            outTl.to($(this), 0.5, { backgroundColor:"rgba(255, 255, 255, 0.75)" } )
+            outTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1}, 0 )
+
+            if($('.hotspot').data('clicked')) {
+                outTl.pause();
+            }
+        }
+
+        function showPopup(e){
+            e.stopPropagation();
+            var showTl = new TimelineMax();
 
             if( $(this).hasClass("hotspot--up") ){
-                overTl.to( $(this) , 0.5 , { y: -20, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4 , { y: -40, ease: Power2.easeIn } )
             }
             if( $(this).hasClass("hotspot--down") ){
-                overTl.to( $(this) , 0.5, { y: 20, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4, { y: 40, ease: Power2.easeIn } )
             }
             if( $(this).hasClass("hotspot--left") ){
-                overTl.to( $(this) , 0.5 , { x: -20, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4 , { x: -40, ease: Power2.easeIn } )
             }
             if( $(this).hasClass("hotspot--right") ){
-                overTl.to( $(this) , 0.5, { x: 20, ease: Power2.easeIn } )
+                showTl.to( $(this) , 0.4, { x: 40, ease: Power2.easeIn } )
             }
-            overTl.to($(this).find(".icon .group"), 0.1, { fill: "#fff", ease: Power3.easeIn } )
-            overTl.to($(this).find(".popup"), 0.2, { autoAlpha: 1, ease: Power4.easeIn } )
-            overTl.fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
+            showTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.2, scaleY: 1.2, autoAlpha: 0 }, 0 )
+            showTl.to($(this).find(".icon .group"), 0.2, { fill: "#fff", ease: Power3.easeIn } )
+            showTl.to($(this).find(".popup"), 0.2, { autoAlpha: 1, ease: Power4.easeIn } )
+            showTl.fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
+
+            $(this).addClass("active");
+            $("body").click(hidePopup);
         }
             
-        function out(){
-            event.preventDefault();
-            var outTl = new TimelineMax();
-            outTl
+        function hidePopup(e){
+            e.stopPropagation();
+            var hideTl = new TimelineMax();
+            hideTl
             .to($(this).find(".copy"), 0.3, { y: 20, autoAlpha: 0 } )
             .to($(this).find(".icon .group"), 0.1, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
             .to($(this).find(".popup"), 0.2, { autoAlpha: 0, ease: Power4.easeIn } )
-            if( $(this).hasClass("hotspot--up") ) {
-                outTl.to( $(this) , 0.5 , { y: 20, ease: Power2.easeIn } )
+            .to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1, autoAlpha: 1 } )
+
+            if( $(".active").hasClass("hotspot--up") ) {
+                hideTl.to( $(".active") , 0.4 , { y: 20, ease: Power2.easeIn } )
             }
-            if( $(this).hasClass("hotspot--down") ){
-                outTl.to( $(this) , 0.5, { y: -20, ease: Power2.easeIn } )
+            if( $(".active").hasClass("hotspot--down") ){
+                hideTl.to( $(".active") , 0.4, { y: -20, ease: Power2.easeIn } )
             }
-            if( $(this).hasClass("hotspot--left") ){
-                outTl.to( $(this) , 0.5 , { x: 20, ease: Power2.easeIn } )
+            if( $(".active").hasClass("hotspot--left") ){
+                hideTl.to( $(".active") , 0.4 , { x: 20, ease: Power2.easeIn } )
             }
-            if( $(this).hasClass("hotspot--right") ){
-                outTl.to( $(this) , 0.5, { x: -20, ease: Power2.easeIn } )
+            if( $(".active").hasClass("hotspot--right") ){
+                hideTl.to( $(".active") , 0.4, { x: -20, ease: Power2.easeIn } )
             }
+            $(".hotspot").removeClass("active")
         }
     },
 
