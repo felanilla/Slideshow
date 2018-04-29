@@ -171,16 +171,14 @@ var ANIMATION = {
         
         
         $(".hotspot").click(showPopup);
-        $(".hotspot").hover(on, out);
+        $(".hotspot:not(.active)").hover(on, out);
         TweenMax.set(".popup", { autoAlpha: 0 } );
 
         function showPopup(e){
             e.stopPropagation();
             $(this).addClass("active");
-            $(this).unbind("hover");
 
             var showTl = new TimelineMax();
-            
 
             if( $(this).hasClass("hotspot--up") ){
                 showTl.to( $(this) , 0.4 , { y: -40, ease: Power1.easeIn } )
@@ -222,7 +220,7 @@ var ANIMATION = {
             if( $(".active").hasClass("hotspot--right") ){
                 hideTl.to( $(".active") , 0.4, { x: -20, ease: Power1.easeIn } )
             }
-            hideTl.to($(this).find(".hotspot__hotspot-inner"), 0.2, { autoAlpha: 1 }, "+=.3" )
+            hideTl.to($(this).find(".hotspot__hotspot-inner"), 0.2, { autoAlpha: 1 }, "+=.2" )
 
             $(".hotspot").removeClass("active")
         }
