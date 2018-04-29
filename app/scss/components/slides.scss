@@ -88,7 +88,7 @@
 
             .popup {
                 position: absolute;
-                top: 0;
+                top: -5px;
                 left: 0;
                 background-color: hsla(0,0%,9%,.8);
                 padding: 20px 20px 20px 130px;
@@ -114,8 +114,8 @@
 
             .popup {
                 width: 465px;
-                top: -15px;
-                left: 5px;
+                top: 10px;
+                left: 10px;
             }
         }
 
@@ -129,8 +129,6 @@
 
             .popup {
                 width: 420px;
-                top: -5px;
-                left: 5px;
                 min-height: 130px;
             }
         }
@@ -145,7 +143,6 @@
             }
 
             .popup {
-                top: 7px;
                 left: -355px;
                 width: 480px;
                 padding-right: 130px;
@@ -163,10 +160,8 @@
             }
 
             .popup {
-                width: 410px;
-                padding-left: 130px;
+                width: 400px;
                 top: -10px;
-                left: 5px;
             }
         }
 
@@ -182,10 +177,9 @@
             }
 
             .popup {
-                top: 7px;
+                top: 5px;
                 left: 5px;
                 width: 480px;
-                padding-left: 130px;
             }
         }
 

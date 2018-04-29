@@ -55,7 +55,7 @@ var ANIMATION = {
         
         TweenMax.set( 'section .bg-container' , { 
             y: -200, 
-            rotate:.1 
+            rotate: .1 
         });
         TweenMax.set( 'h1' , { 
             y: 100,
@@ -183,14 +183,12 @@ var ANIMATION = {
             var outTl = new TimelineMax();
             outTl.to($(this), 0.5, { backgroundColor:"rgba(255, 255, 255, 0.75)" } )
             outTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1}, 0 )
-
-            if($('.hotspot').data('clicked')) {
-                outTl.pause();
-            }
         }
 
         function showPopup(e){
             e.stopPropagation();
+            $(this).addClass("active");
+
             var showTl = new TimelineMax();
 
             if( $(this).hasClass("hotspot--up") ){
@@ -210,19 +208,17 @@ var ANIMATION = {
             showTl.to($(this).find(".popup"), 0.2, { autoAlpha: 1, ease: Power4.easeIn } )
             showTl.fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
 
-            $(this).addClass("active");
             $("body").click(hidePopup);
         }
             
         function hidePopup(e){
             e.stopPropagation();
             var hideTl = new TimelineMax();
+
             hideTl
             .to($(this).find(".copy"), 0.3, { y: 20, autoAlpha: 0 } )
             .to($(this).find(".icon .group"), 0.1, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
             .to($(this).find(".popup"), 0.2, { autoAlpha: 0, ease: Power4.easeIn } )
-            .to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1, autoAlpha: 1 } )
-
             if( $(".active").hasClass("hotspot--up") ) {
                 hideTl.to( $(".active") , 0.4 , { y: 20, ease: Power1.easeIn } )
             }
@@ -235,14 +231,29 @@ var ANIMATION = {
             if( $(".active").hasClass("hotspot--right") ){
                 hideTl.to( $(".active") , 0.4, { x: -20, ease: Power1.easeIn } )
             }
+            hideTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { autoAlpha: 1 }, "+=.2" )
+
             $(".hotspot").removeClass("active")
         }
+    },
+
+    headerAnimation: function() {
+
+        let header = document.getElementsByTagName('h1');
+
+        header.addEventListener('hover', function(e) {
+
+            var headerTl = new TimelineMax();
+            headerTl
+
+        });
     },
 
     init: function() {
         ANIMATION.loadPage();
         ANIMATION.changeSlideAnimation();
         ANIMATION.showAndHidePopup();
+        ANIMATION.headerAnimation();
     },
 };
 
