@@ -168,28 +168,19 @@ var ANIMATION = {
     },
 
     showAndHidePopup: function() {
-
-        $(".hotspot").hover(on, out);
+        
+        
         $(".hotspot").click(showPopup);
+        $(".hotspot").hover(on, out);
         TweenMax.set(".popup", { autoAlpha: 0 } );
-
-        function on(e){
-            var onTl = new TimelineMax();
-            onTl.to($(this), 0.5, { backgroundColor:"#fff" }, 0 )
-            onTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.1, scaleY: 1.1 }, 0 )
-        }
-
-        function out(e){
-            var outTl = new TimelineMax();
-            outTl.to($(this), 0.5, { backgroundColor:"rgba(255, 255, 255, 0.75)" } )
-            outTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1}, 0 )
-        }
 
         function showPopup(e){
             e.stopPropagation();
             $(this).addClass("active");
+            $(this).unbind("hover");
 
             var showTl = new TimelineMax();
+            
 
             if( $(this).hasClass("hotspot--up") ){
                 showTl.to( $(this) , 0.4 , { y: -40, ease: Power1.easeIn } )
@@ -203,10 +194,10 @@ var ANIMATION = {
             if( $(this).hasClass("hotspot--right") ){
                 showTl.to( $(this) , 0.4, { x: 40, ease: Power1.easeIn } )
             }
-            showTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.1, scaleY: 1.1, autoAlpha: 0 }, 0 )
+            showTl.to($(this).find(".hotspot__hotspot-inner"), 0.2, { scaleX: 1.1, scaleY: 1.1, autoAlpha: 0 }, 0 )
             showTl.to($(this).find(".icon .group"), 0.2, { fill: "#fff", ease: Power3.easeIn } )
             showTl.to($(this).find(".popup"), 0.2, { autoAlpha: 1, ease: Power4.easeIn } )
-            showTl.fromTo($(this).find(".copy"), 0.3, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
+            showTl.fromTo($(this).find(".copy"), 0.2, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
 
             $("body").click(hidePopup);
         }
@@ -216,8 +207,8 @@ var ANIMATION = {
             var hideTl = new TimelineMax();
 
             hideTl
-            .to($(this).find(".copy"), 0.3, { y: 20, autoAlpha: 0 } )
-            .to($(this).find(".icon .group"), 0.1, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
+            .to($(this).find(".copy"), 0.2, { y: 20, autoAlpha: 0 } )
+            .to($(this).find(".icon .group"), 0.2, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
             .to($(this).find(".popup"), 0.2, { autoAlpha: 0, ease: Power4.easeIn } )
             if( $(".active").hasClass("hotspot--up") ) {
                 hideTl.to( $(".active") , 0.4 , { y: 20, ease: Power1.easeIn } )
@@ -231,29 +222,29 @@ var ANIMATION = {
             if( $(".active").hasClass("hotspot--right") ){
                 hideTl.to( $(".active") , 0.4, { x: -20, ease: Power1.easeIn } )
             }
-            hideTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { autoAlpha: 1 }, "+=.2" )
+            hideTl.to($(this).find(".hotspot__hotspot-inner"), 0.2, { autoAlpha: 1 }, "+=.3" )
 
             $(".hotspot").removeClass("active")
         }
-    },
 
-    headerAnimation: function() {
+        function on(e){
+            var onTl = new TimelineMax();
+            onTl.to($(this), 0.5, { backgroundColor:"#fff" }, 0 )
+            onTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.1, scaleY: 1.1 }, 0 )
+        }
 
-        let header = document.getElementsByTagName('h1');
+        function out(e){
+            var outTl = new TimelineMax();
 
-        header.addEventListener('hover', function(e) {
-
-            var headerTl = new TimelineMax();
-            headerTl
-
-        });
+            outTl.to($(this), 0.5, { backgroundColor:"rgba(255, 255, 255, 0.75)" } )
+            outTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1}, 0 )
+        }
     },
 
     init: function() {
         ANIMATION.loadPage();
         ANIMATION.changeSlideAnimation();
         ANIMATION.showAndHidePopup();
-        ANIMATION.headerAnimation();
     },
 };
 

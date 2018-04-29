@@ -51,6 +51,10 @@
             @include align-items(center);
         }
 
+        .header-black {
+            opacity: 0;
+        }
+
         .hotspot {
             cursor: pointer;
             position: absolute;
@@ -194,7 +198,7 @@
 
             .popup {
                 width: 480px;
-                top: -20px;
+                top: -30px;
                 left: 10px;
             }
         }
