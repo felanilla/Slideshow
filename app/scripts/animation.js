@@ -38,7 +38,7 @@ var ANIMATION = {
             .from(main, .4, {
                 autoAlpha: 0
             } )
-            .from(nav, 1, {
+            .from(nav, 0.9, {
                 x: -180,
                 ease:Quad.easeInOut
             } )
@@ -174,6 +174,8 @@ var ANIMATION = {
     showAndHidePopup: () => {
 
         const hotspots = document.querySelectorAll('.hotspot');
+        var playAnim = [];
+        var reverseAnim = []
 
         for (var i = 0; i < hotspots.length; i++) {
             hotspots[i].addEventListener("click", showPopup);
@@ -184,12 +186,15 @@ var ANIMATION = {
         function showPopup(e){
             e.stopPropagation();
             this.classList.add("active");
-            var showTl = new TimelineMax();
+            var i = $(this).index();
+            playAnim[i] = new TimelineMax();
 
-            showTl
+            if(reverseAnim[i]) reverseAnim[i].kill();
+
+            playAnim[i]
             .to($(this).find(".icon .group"), 0.2, { fill: "#fff", ease: Power3.easeIn, width: 150 }, 0 )
             .to($(this).find(".hotspot__circle"), 0.1, { autoAlpha: 0 }, 0 )
-            .to($(this), 0.5, { width: 420, height: 140, borderRadius: 20, backgroundColor: "hsla(0,0%,9%,.8)" } )
+            .to($(this), 0.5, { width: 420, height: 140, borderRadius: 20, backgroundColor: "rgba(23, 23, 23, 0.75, .8)" } )
             .to($(this).find(".hotspot__copy"), 0.2, { autoAlpha: 1, ease: Power2.easeIn } )
 
             document.querySelector('body').addEventListener("click", hidePopup);
@@ -197,18 +202,25 @@ var ANIMATION = {
             
         function hidePopup(e){
             e.stopPropagation();
-            var hideTl = new TimelineMax();
 
-            hideTl
-            .to($(this).find(".hotspot__copy"), 0.2, { autoAlpha: 0, ease: Power2.easeIn }, 0 )
-            .to($(this).find(".icon .group"), 0.5, { fill: "#000", stroke: "transparent", ease: Power3.easeIn }, 0 )
-            .to($(this).find(".active"), 0.5, { width: 120, height: 120, borderRadius: 100, backgroundColor: "rgba(255, 255, 255, 0.75)" } )
-            .to($(this).find(".hotspot__circle"), 0.3, { autoAlpha: 1, scaleX: 1, scaleY: 1 } )
+            for(var i = 0; i < hotspots.length; i++) {
+                if (playAnim[i]) playAnim[i].kill();
+                if ($(hotspots[i]).hasClass('active')) {
 
-            $(".hotspot").removeClass("active");
+                reverseAnim[i] = new TimelineMax();
+                reverseAnim[i]
+                .to($(this).find(".hotspot__copy"), 0.2, { autoAlpha: 0, ease: Power2.easeIn }, 0 )
+                .to($(this).find(".icon .group"), 0.5, { fill: "#000", stroke: "transparent", ease: Power3.easeIn }, 0 )
+                .to($(this).find(".active"), 0.5, { width: 120, height: 120, borderRadius: 100, backgroundColor: "rgba(255, 255, 255, 0.75)" } )
+                .to($(this).find(".hotspot__circle"), 0.3, { autoAlpha: 1, scaleX: 1, scaleY: 1 } )
+
+                $(".hotspot").removeClass("active");
+                }
+            }
         }
 
         function on(e){
+
             if (this.classList.contains("active")) {
                 return
             } else {
@@ -220,6 +232,7 @@ var ANIMATION = {
         }
 
         function out(e){
+
             if (this.classList.contains("active")) {
                 return
             } else {

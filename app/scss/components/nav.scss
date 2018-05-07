@@ -42,6 +42,11 @@ nav {
                 right: -35%;
             }
         }
+
+        &:hover .nav-top__icon {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
     }
 
     .nav-bottom {
