@@ -1,7 +1,7 @@
 {
-  "name": "huncwot",
+  "name": "slideshow",
   "version": "0.0.1",
-  "description": "slideshow task",
+  "description": "task",
   "main": "",
   "private": true,
   "engines": {
@@ -11,7 +11,7 @@
     "test": ""
   },
   "keywords": [
-    "huncwot"
+    "slideshow"
   ],
   "author": "",
   "license": "ISC",
