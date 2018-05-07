@@ -3,14 +3,17 @@ var utilities = require('./utilities');
 
 var ANIMATION = {
 
-    loadPage: function() {
+    loadPage: () => {
 
         let main = document.getElementsByTagName('main'),
             nav = document.getElementsByTagName('nav'),
             load = document.getElementsByClassName("load"),
             icon = document.getElementsByClassName("nav-top__icon");
     
-        let loaderTime = new TimelineMax({repeat: 2, onComplete: loadScreen})
+        let loaderTime = new TimelineMax({
+            repeat: 2, 
+            onComplete: loadScreen
+        })
         let timeline = new TimelineMax()
 
         loaderTime
@@ -32,11 +35,11 @@ var ANIMATION = {
             .to($(document.getElementsByClassName("loader-container")), .5, {
                 autoAlpha: 0
             })
-            .from(main, .5, {
+            .from(main, .4, {
                 autoAlpha: 0
             } )
             .from(nav, 1, {
-                x: -200,
+                x: -180,
                 ease:Quad.easeInOut
             } )
             .from(icon, .1, {
@@ -47,7 +50,7 @@ var ANIMATION = {
         }
     },
 
-   changeSlideAnimation: function() {
+   changeSlideAnimation: () => {
 
         $('section').each( function(){
             $(this).prepend('<div class="bg-container"><div class="bg-image" style=\'background-image: '+ $(this).css('background-image') +';\'></div></div>');
@@ -66,7 +69,7 @@ var ANIMATION = {
             autoAlpha: 0 
         });
         
-        function moveToSlide( index ){
+        function moveToSlide(index) {
             let intoSection = $('section:nth-child('+index+')');
             var outSectionAbove = $( 'section:nth-child('+(index-1)+')' );
             var outSectionBelow = $( 'section:nth-child('+(index+1)+')' );    
@@ -93,7 +96,7 @@ var ANIMATION = {
         var curSlide = 1;
         var isScrolling = false;
 
-        $('.slides-container').on('mousewheel', function(e) {
+        $('.slides-container').on('mousewheel', (e) => {
             if( !isScrolling ){
                 if( e.deltaY < -1 && curSlide < $('section').length ){ 
                     // Scroll Down   
@@ -111,7 +114,7 @@ var ANIMATION = {
             }   
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', (e) => {
             if (( e.keyCode == '39' || e.keyCode == '40' ) && curSlide < $('section').length ){ 
                 moveToSlide( curSlide+1 );
                 curSlide++;
@@ -120,14 +123,14 @@ var ANIMATION = {
                 moveToSlide( curSlide-1 );
                 curSlide--;
                 changeNavContent();
-            }     
+            }    
         }); 
 
         let arrowUp = document.getElementsByClassName('nav-bottom__arrow-up')[0],
             arrowDown = document.getElementsByClassName('nav-bottom__arrow-down')[0];
 
 
-        arrowUp.addEventListener('click', function(e) {
+        arrowUp.addEventListener('click', (e) => {
             if( curSlide > 1 ){ 
                 moveToSlide( curSlide-1 );
                 curSlide--;
@@ -135,7 +138,7 @@ var ANIMATION = {
             }
         });
 
-        arrowDown.addEventListener('click', function(e) {
+        arrowDown.addEventListener('click', (e) => {
             if( curSlide < $('section').length ){ 
                 moveToSlide( curSlide+1 );
                 curSlide++;
@@ -165,39 +168,31 @@ var ANIMATION = {
             .from(line, .5 , {width: 0 }, 0)
             .from(line, .2 ,{  left: 35 }, .2)
         }
+        
     },
 
-    showAndHidePopup: function() {
-        
-        
-        $(".hotspot").click(showPopup);
-        $(".hotspot:not(.active)").hover(on, out);
-        TweenMax.set(".popup", { autoAlpha: 0 } );
+    showAndHidePopup: () => {
+
+        const hotspots = document.querySelectorAll('.hotspot');
+
+        for (var i = 0; i < hotspots.length; i++) {
+            hotspots[i].addEventListener("click", showPopup);
+            hotspots[i].addEventListener("mouseenter", on);
+            hotspots[i].addEventListener("mouseleave", out);
+        }
 
         function showPopup(e){
             e.stopPropagation();
-            $(this).addClass("active");
-
+            this.classList.add("active");
             var showTl = new TimelineMax();
 
-            if( $(this).hasClass("hotspot--up") ){
-                showTl.to( $(this) , 0.4 , { y: -40, ease: Power1.easeIn } )
-            }
-            if( $(this).hasClass("hotspot--down") ){
-                showTl.to( $(this) , 0.4, { y: 40, ease: Power1.easeIn } )
-            }
-            if( $(this).hasClass("hotspot--left") ){
-                showTl.to( $(this) , 0.4 , { x: -40, ease: Power1.easeIn } )
-            }
-            if( $(this).hasClass("hotspot--right") ){
-                showTl.to( $(this) , 0.4, { x: 40, ease: Power1.easeIn } )
-            }
-            showTl.to($(this).find(".hotspot__hotspot-inner"), 0.2, { scaleX: 1.1, scaleY: 1.1, autoAlpha: 0 }, 0 )
-            showTl.to($(this).find(".icon .group"), 0.2, { fill: "#fff", ease: Power3.easeIn } )
-            showTl.to($(this).find(".popup"), 0.2, { autoAlpha: 1, ease: Power4.easeIn } )
-            showTl.fromTo($(this).find(".copy"), 0.2, { y: -20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 } )
+            showTl
+            .to($(this).find(".icon .group"), 0.2, { fill: "#fff", ease: Power3.easeIn, width: 150 }, 0 )
+            .to($(this).find(".hotspot__circle"), 0.1, { autoAlpha: 0 }, 0 )
+            .to($(this), 0.5, { width: 420, height: 140, borderRadius: 20, backgroundColor: "hsla(0,0%,9%,.8)" } )
+            .to($(this).find(".hotspot__copy"), 0.2, { autoAlpha: 1, ease: Power2.easeIn } )
 
-            $("body").click(hidePopup);
+            document.querySelector('body').addEventListener("click", hidePopup);
         }
             
         function hidePopup(e){
@@ -205,37 +200,34 @@ var ANIMATION = {
             var hideTl = new TimelineMax();
 
             hideTl
-            .to($(this).find(".copy"), 0.2, { y: 20, autoAlpha: 0 } )
-            .to($(this).find(".icon .group"), 0.2, { fill: "#000", stroke: "transparent", ease: Power3.easeIn } )
-            .to($(this).find(".popup"), 0.2, { autoAlpha: 0, ease: Power4.easeIn } )
-            if( $(".active").hasClass("hotspot--up") ) {
-                hideTl.to( $(".active") , 0.4 , { y: 20, ease: Power1.easeIn } )
-            }
-            if( $(".active").hasClass("hotspot--down") ){
-                hideTl.to( $(".active") , 0.4, { y: -20, ease: Power1.easeIn } )
-            }
-            if( $(".active").hasClass("hotspot--left") ){
-                hideTl.to( $(".active") , 0.4 , { x: 20, ease: Power1.easeIn } )
-            }
-            if( $(".active").hasClass("hotspot--right") ){
-                hideTl.to( $(".active") , 0.4, { x: -20, ease: Power1.easeIn } )
-            }
-            hideTl.to($(this).find(".hotspot__hotspot-inner"), 0.2, { autoAlpha: 1 }, "+=.2" )
+            .to($(this).find(".hotspot__copy"), 0.2, { autoAlpha: 0, ease: Power2.easeIn }, 0 )
+            .to($(this).find(".icon .group"), 0.5, { fill: "#000", stroke: "transparent", ease: Power3.easeIn }, 0 )
+            .to($(this).find(".active"), 0.5, { width: 120, height: 120, borderRadius: 100, backgroundColor: "rgba(255, 255, 255, 0.75)" } )
+            .to($(this).find(".hotspot__circle"), 0.3, { autoAlpha: 1, scaleX: 1, scaleY: 1 } )
 
-            $(".hotspot").removeClass("active")
+            $(".hotspot").removeClass("active");
         }
 
         function on(e){
-            var onTl = new TimelineMax();
-            onTl.to($(this), 0.5, { backgroundColor:"#fff" }, 0 )
-            onTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1.1, scaleY: 1.1 }, 0 )
+            if (this.classList.contains("active")) {
+                return
+            } else {
+                var onTl = new TimelineMax();
+                onTl
+                .to($(this), 0.5, { backgroundColor:"#fff" }, 0 )
+                .to($(this).find(".hotspot__circle"), 0.5, { scaleX: 1.1, scaleY: 1.1 }, 0 )
+            }
         }
 
         function out(e){
-            var outTl = new TimelineMax();
-
-            outTl.to($(this), 0.5, { backgroundColor:"rgba(255, 255, 255, 0.75)" } )
-            outTl.to($(this).find(".hotspot__hotspot-inner"), 0.4, { scaleX: 1, scaleY: 1}, 0 )
+            if (this.classList.contains("active")) {
+                return
+            } else {
+                var outTl = new TimelineMax();
+                outTl
+                .to($(this), 0.5, { backgroundColor:"rgba(255, 255, 255, 0.75)" } )
+                .to($(this).find(".hotspot__circle"), 0.5, { scaleX: 1, scaleY: 1}, 0 )
+            }
         }
     },
 

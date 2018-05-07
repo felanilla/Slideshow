@@ -4,7 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
-h1 { 
+h1,
+span { 
   font-size: $font-size-header; 
   font-family: $font;
   font-weight: 800;
@@ -24,9 +25,13 @@ p {
   }
 }
 
-p.copy {
+.copy {
   font-size: $font-size-copy;
   font-family: sans-serif;
   font-weight: 400;
+
+  @include breakpoint(sm) {
+    font-size: ($font-size-copy / 2);
+  }
 
 }
